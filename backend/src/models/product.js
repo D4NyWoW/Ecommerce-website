@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
@@ -15,12 +15,18 @@ const ProductSchema = new Schema({
     required: true,
   },
   photos: [String],
+  category: {
+    type: String,
+    enum: ["Woman", "Men", "Kids", "Others"],
+    default: "Others",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-const User = mongoose.model('product', ProductSchema);
+const Product = mongoose.model("product", ProductSchema);
 
-export default User;
+export default Product;

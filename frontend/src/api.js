@@ -17,14 +17,17 @@ axios.interceptors.request.use(
   }
 );
 
-export const fetchProductList = async ({ pageParam = 1 }) => {
-  const { data } = await axios.get(
-    `${process.env.REACT_APP_BASE_ENDPOINT}/product?page=${pageParam}`
-  );
+export const fetchProductList = async ({ pageParam = 1, category }) => {
+  let url = `${process.env.REACT_APP_BASE_ENDPOINT}/product?page=${pageParam}`;
 
+  if (category) {
+    url += `&category=${category.charAt(0).toUpperCase() + category.slice(1)}`;
+  }
+  console.log(category);
+
+  const { data } = await axios.get(url);
   return data;
 };
-
 export const fetchProduct = async (id) => {
   const { data } = await axios.get(
     `${process.env.REACT_APP_BASE_ENDPOINT}/product/${id}`

@@ -19,6 +19,15 @@ function Navbar() {
           <li>
             <Link to="/">Products</Link>
           </li>
+          <li>
+            <Link to="/men">Men</Link>
+          </li>
+          <li>
+            <Link to="/woman">Women</Link>
+          </li>
+          <li>
+            <Link to="/kids">Kids</Link>
+          </li>
         </ul>
       </div>
       <div className={styles.right}>

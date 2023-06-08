@@ -9,6 +9,7 @@ import {
   Input,
   Textarea,
   Button,
+  Select,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Formik, FieldArray } from "formik";
@@ -64,6 +65,7 @@ function NewProduct() {
             description: "",
             price: "",
             photos: [],
+            category: "Others",
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -129,6 +131,28 @@ function NewProduct() {
                         </Text>
                       )}
                     </FormControl>
+                    <FormControl mt={4}>
+                      <FormLabel>Category</FormLabel>
+                      <Select
+                        name="category"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.category}
+                        disabled={isSubmitting}
+                        isInvalid={touched.category && errors.category}
+                      >
+                        <option value="Others">Others</option>
+                        <option value="Men">Men</option>
+                        <option value="Woman">Women</option>
+                        <option value="Kids">Kids</option>
+                      </Select>
+                      {touched.category && errors.category && (
+                        <Text mt={2} color="red.500">
+                          {errors.category}
+                        </Text>
+                      )}
+                    </FormControl>
+
                     <FormControl mt={4}>
                       <FormLabel>Photos</FormLabel>
                       <FieldArray
