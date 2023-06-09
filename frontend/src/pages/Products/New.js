@@ -11,7 +11,7 @@ import {
   Button,
   Select,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, FieldArray } from "formik";
 import validationSchema from "./validations";
 import { message } from "antd";
@@ -21,9 +21,8 @@ function NewProduct() {
   const newProductMutation = useMutation(postProduct, {
     onSuccess: () => queryClient.invalidateQueries("admin:products"),
   });
-
+  const navigate = useNavigate();
   const handleSubmit = async (values, bag) => {
-    console.log(values);
     message.loading({ content: "Loading...", key: "product_update" });
 
     const newValues = {
@@ -40,6 +39,7 @@ function NewProduct() {
         });
       },
     });
+    navigate("/admin");
   };
 
   return (
@@ -66,6 +66,7 @@ function NewProduct() {
             price: "",
             photos: [],
             category: "Others",
+            stock: 1,
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -128,6 +129,22 @@ function NewProduct() {
                       {touched.price && errors.price && (
                         <Text mt={2} color="red.500">
                           {errors.price}
+                        </Text>
+                      )}
+                    </FormControl>
+                    <FormControl mt={4}>
+                      <FormLabel>Stock</FormLabel>
+                      <Input
+                        name="stock"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.stock}
+                        disabled={isSubmitting}
+                        isInvalid={touched.description && errors.description}
+                      />
+                      {touched.stock && errors.stock && (
+                        <Text mt={2} color="red.500">
+                          {errors.stock}
                         </Text>
                       )}
                     </FormControl>

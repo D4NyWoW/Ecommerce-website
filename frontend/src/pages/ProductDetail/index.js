@@ -13,6 +13,10 @@ import {
   CardFooter,
 } from "@chakra-ui/react";
 import { useBasket } from "../../contexts/BasketContext";
+import { motion } from "framer-motion";
+
+// Adding framer motion component
+const MotionCard = motion(Card);
 
 function ProductDetail() {
   const { product_id } = useParams();
@@ -35,10 +39,15 @@ function ProductDetail() {
 
   return (
     <div>
-      <Card
+      {/* Adding animations to the Card component */}
+      <MotionCard
         direction={{ base: "column", sm: "row" }}
         overflow="hidden"
         variant="outline"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }} // How the element will animate when it's removed from the tree
+        transition={{ duration: 1 }} // The speed of the animation
       >
         <ImageGallery items={images} showThumbnails={false} />
 
@@ -64,7 +73,7 @@ function ProductDetail() {
             </Button>
           </CardFooter>
         </Stack>
-      </Card>
+      </MotionCard>
     </div>
   );
 }

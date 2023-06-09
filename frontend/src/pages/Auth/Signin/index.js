@@ -8,14 +8,18 @@ import {
   Input,
   Button,
   Alert,
+  useToast,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import validationSchema from "./validations";
 import { fetchLogin } from "../../../api";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Signin({ history }) {
   const { login } = useAuth();
+  const navigate = useNavigate();
+  const toast = useToast(); // Using the toast function
 
   const formik = useFormik({
     initialValues: {
@@ -30,9 +34,27 @@ function Signin({ history }) {
           password: values.password,
         });
         login(loginResponse);
-        history.push("/profile");
+        // history.push("/profile");
+        navigate("/"); // Navigating to the root page
+
+        // Displaying the toast message
+        toast({
+          title: "Signed in successfully.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
+
+        // Displaying the toast message for error
+        toast({
+          title: "Failed to sign in.",
+          description: e.response.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
       }
     },
   });

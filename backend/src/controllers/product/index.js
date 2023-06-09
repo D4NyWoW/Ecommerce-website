@@ -1,11 +1,14 @@
 import Product from "../../models/product";
 import Boom from "boom";
 import ProductSchema from "./validations";
+import Product from "../../models/product.js";
 
 const Create = async (req, res, next) => {
   const input = req.body;
   const { error } = ProductSchema.validate(input);
-
+  if (input.stock < 1) {
+    return next(Boom.badRequest("Stock must be greater than 0"));
+  }
   if (error) {
     return next(Boom.badRequest(error.details[0].message));
   }

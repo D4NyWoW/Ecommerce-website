@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Signin from "./pages/Auth/Signin/index";
 import Signup from "./pages/Auth/Signup/index";
 import Products from "./pages/Products/index";
@@ -13,6 +14,8 @@ import Orders from "./pages/Admin/Orders";
 import AdminProducts from "./pages/Admin/AdminProducts";
 import AdminProductDetail from "./pages/Admin/AdminProductDetail";
 import NewProduct from "./pages/Products/New";
+import ContactMe from "./pages/Contact";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -24,6 +27,8 @@ function App() {
           <Route path="/:category" exect index element={<Products />} />
           <Route path="/product/:product_id" element={<ProductDetail />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/contact-me" element={<ContactMe />} />
+          <Route path="/about" element={<About />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/basket" element={<Basket />} />
           <Route path="/profile" element={<ProductedProfile />} />
@@ -39,6 +44,7 @@ function App() {
           <Route path="*" element={<Error404 />} />
         </Routes>
       </div>
+      <Footer />
     </>
   );
 }

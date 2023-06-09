@@ -1,19 +1,20 @@
 import React from "react";
 import styles from "./style.module.css";
 import { Link } from "react-router-dom";
-import { Button } from "@chakra-ui/react";
+import { Button, Image, useColorMode, IconButton } from "@chakra-ui/react";
 import { useAuth } from "../../contexts/AuthContext";
 import { useBasket } from "../../contexts/BasketContext";
-
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 function Navbar() {
   const { loggedIn, user } = useAuth();
   const { items } = useBasket();
-
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <nav className={styles.nav}>
       <div className={styles.left}>
+        <Image src="/skidialogo.png" height={12} width={"auto"} />
         <div className={styles.logo}>
-          <Link to="/">eCommerce</Link>
+          <Link to="/">Skidia</Link>
         </div>
         <ul className={styles.menu}>
           <li>
@@ -27,6 +28,12 @@ function Navbar() {
           </li>
           <li>
             <Link to="/kids">Kids</Link>
+          </li>
+          <li>
+            <Link to="/contact-me">Contact</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
           </li>
         </ul>
       </div>
@@ -64,6 +71,14 @@ function Navbar() {
             </Link>
           </>
         )}
+        <IconButton
+          aria-label="Toggle color mode"
+          icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          onClick={toggleColorMode}
+          size="md"
+          variant="ghost"
+          ml={3}
+        />
       </div>
     </nav>
   );

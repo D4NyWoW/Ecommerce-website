@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
@@ -24,6 +23,11 @@ const ProductSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  stock: {
+    type: Number,
+    required: true,
+    default: 1,
   },
 });
 

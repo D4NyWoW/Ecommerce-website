@@ -5,6 +5,7 @@ const ProductSchema = Joi.object({
   description: Joi.string().min(3),
   price: Joi.string().required(),
   photos: Joi.string(),
+  stock: Joi.number().required(),
   category: Joi.string().valid("Men", "Woman", "Kids", "Others").required(),
 });
 
