@@ -17,7 +17,7 @@ const MotionFormControl = motion(FormControl);
 function ContactMe() {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    window.location.href = `mailto:info@example.com?subject=Contact Request&body=Name: ${data.name}%0D%0AEmail: ${data.email}%0D%0AComment: ${data.comment}`;
+    window.location.href = `mailto:f_seby@yahoo.com?subject=Contact Request&body=Name: ${data.name}%0D%0AEmail: ${data.email}%0D%0AComment: ${data.comment}`;
   };
 
   const formVariants = {

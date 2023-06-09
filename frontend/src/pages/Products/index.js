@@ -71,20 +71,6 @@ function Products() {
         />
         <VStack w="100%" align={"start"}>
           <Box>Select price range</Box>
-          {/* <Slider
-            colorScheme="red"
-            defaultValue={0}
-            min={0}
-            max={500}
-            onChange={(val) => setPrice(val)}
-          >
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb boxSize={6}>
-              <Box color="tomato" />
-            </SliderThumb>
-          </Slider> */}
           <MultiRangeSlider
             style={{ width: "100%" }}
             min={0}

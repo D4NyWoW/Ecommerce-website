@@ -17,7 +17,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useBasket } from "../../contexts/BasketContext";
 
-// Create motion components
 const MotionCard = motion(Card);
 const MotionButton = motion(Button);
 
